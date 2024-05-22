@@ -5,9 +5,13 @@
 package casinò;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import myslotmachine.SlotMachineGUI;
@@ -164,16 +168,57 @@ public class MainMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     public void aggiornaCredito() {
-        try (BufferedReader br = new BufferedReader(new FileReader("accountTemp.txt"))) {
+         try (BufferedReader br = new BufferedReader(new FileReader("accountTemp.txt"))) {
             String riga = br.readLine();
-            br.close();
             System.out.println(riga);
             if (riga != null && !riga.trim().isEmpty()) {
                 String[] dividi = riga.split(",");
                 if (dividi.length == 3) {
-                    int credito=Integer.parseInt(dividi[2]);
-                    System.out.println("Contenuto dividi:"+dividi[2]);
+                    int credito = Integer.parseInt(dividi[2]);
+                    System.out.println("Contenuto dividi:" + dividi[2]);
                     Credit.setText(credito + "€");
+
+                    // Aggiorna il file "input.txt"
+                    String filePath = "input.txt";
+                    String nome = dividi[0];
+                    String password = dividi[1];
+                    String nuovoCredito = String.valueOf(credito);
+
+                    List<String> righe = new ArrayList<>();
+                    boolean trovato = false;
+
+                    // Legge il file "input.txt"
+                    try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+                        String linea;
+                        while ((linea = reader.readLine()) != null) {
+                            String[] parti = linea.split(",");
+                            if (parti[0].equals(nome) && parti[1].equals(password)) {
+                                righe.add(nome + "," + password + "," + nuovoCredito);
+                                trovato = true;
+                            } else {
+                                righe.add(linea);
+                            }
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    // Scrive le righe aggiornate nel file "input.txt"
+                    try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+                        for (String rigaFile : righe) {
+                            writer.write(rigaFile);
+                            writer.newLine();
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    if (trovato) {
+                        System.out.println("Credito aggiornato con successo.");
+                    } else {
+                        System.out.println("Utente non trovato.");
+                    }
+
                 } else {
                     Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, "Formato della riga non valido: " + riga);
                 }

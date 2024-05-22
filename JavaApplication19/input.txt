@@ -1,4 +1,4 @@
 Admin,1234,5
-Admin2,12345,10
+Admin2,12345,0
 RicPiace,Piace,0
 Admin3,Password.01,50

@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
+          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="328" max="-2" attributes="0"/>
+                  <Component id="Privacy" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="227" max="-2" attributes="0"/>
+                  <Component id="Privacy" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="Privacy">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="66" type="rgb"/>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="PrivacyMouseExited"/>
+      </Events>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Component id="Chiusura" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="435" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="jScrollPane1" pref="309" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="Chiusura" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="Chiusura">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="X"/>
+            <Property name="borderPainted" type="boolean" value="false"/>
+            <Property name="opaque" type="boolean" value="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ChiusuraActionPerformed"/>
+          </Events>
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="jTextArea1">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="66" red="66" type="rgb"/>
+                </Property>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="8" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="33" green="cc" red="ff" type="rgb"/>
+                </Property>
+                <Property name="lineWrap" type="boolean" value="true"/>
+                <Property name="rows" type="int" value="5"/>
+                <Property name="text" type="java.lang.String" value="Royale Casino opera su concessione assegnata dall&#x2019;Agenzia delle Dogane e dei Monopoli, concessione GAD n&#xb0; 15014.&#xa;&#xa;Nello svolgimento della sua attivit&#xe0;, Royale Casino si impegna a rispettare rigorosi criteri e procedure per assicurare il gioco responsabile. Royale Casino offre i propri servizi di gioco in conformit&#xe0; con la Carta dei Servizi per il gioco a distanza dell&#x2019;Agenzia delle Dogane e dei Monopoli (ADM). La Carta dei Servizi dell&#x2019;ADM rappresenta un insieme di principi e regole comuni applicabili a tutto il settore del gioco a distanza allo scopo di assicurare un&#x2019;offerta responsabile di gioco.&#xa;&#xa;Per garantire sempre un utilizzo responsabile dei nostri giochi, ci siamo inoltre adeguati alle linee guida di eCOGRA, ente certificatore con sede nel Regno Unito il quale verifica che i giochi di poker e di casino disponibili sui nostri siti e sulle nostre applicazioni di gioco siano offerti in modo adeguato e trasparente per tutelare i giocatori.&#xa;&#xa;Royale Casino si impegna da sempre per garantire ai propri utenti un ambiente di gioco responsabile. &#xc8; nostro dovere non solo assicurare il massimo divertimento per i nostri clienti, ma anche prevenire l&apos;utilizzo compulsivo dei nostri servizi e impedire l&apos;accesso ai siti di offerta di gioco ai minorenni. Per ulteriori informazioni sui giochi, le regole e le percentuali di vincita, si invita a consultare le percentuali di raccolta restituite in vincite alla pagina dedicata e sul sito dell&#x2019;ADM.&#xa;&#xa;Per qualsiasi problematica, reclamo o richiesta di ulteriori informazioni visualizzate sul sito di Royale Casino, contattare il nostro team di assistenza. Gli utenti possono contattarci telefonicamente tutti i giorni dalle 8am alle 12pm al numero +44.2034781908 e tramite e-mail 24 ore su 24, 7 giorni su 7.&#xa;&#xa;Per promuovere il gioco responsabile, Royale Casino garantisce di:&#xa;Applicare le leggi e le disposizioni dell&#x2019;ADM secondo cui, per poter giocare sul sito, ogni giocatore deve aver compiuto almeno 18 anni&#xa;Formare i propri dipendenti sui diversi metodi o programmi per le procedure del gioco responsabile&#xa;Fornire ai dipendenti informazioni sulle risorse per assistere i giocatori in caso di problemi legati al gioco&#xa;Fornire informazioni ai giocatori, in modi diversi, sul gioco responsabile, sulle percentuali di vincita dei giochi offerti e sulle risorse disponibili per il supporto in caso di problemi legati al gioco&#xa;Consentire l&apos;accesso ai giochi solo ai giocatori che hanno preliminarmente all&#x2019;offerta di gioco impostato i limiti di versamento&#xa;Proporre ai giocatori che possono avere dei problemi con il gioco l&#x2019;utilizzo degli strumenti di:&#xa;auto-sospensione dal gioco; e&#xa;auto-esclusione dal gioco che comporta l&#x2019;iscrizione tramite Royale Casino al Registro Unico degli Autoesclusi del Gioco A Distanza gestito dall&#x2019;Agenzia delle Dogane e dei Monopoli&#xa;Applicare un monitoraggio efficace per prevenire l&apos;accesso ai giochi da parte di minori&#xa;Porre in essere tutte le misure necessarie per assicurare un ambiente di gioco sicuro e riservato e proteggere i conti dei giocatori da eventuali accessi non autorizzati. Accedere alla Informativa sulla privacy di Royale Casino per visualizzare la disciplina applicabile&#xa;Per visualizzare i termini e condizioni, accedere alla pagina accordo con l&apos;utente&#xa;Per visualizzare le leggi applicabili e la Carta dei Servizi per il gioco responsabile dell&#x2019;ADM, accedere alla pagina normativa&#xa;Presentare una richiesta all&#x2019;Agenzia delle Dogane e dei Monopoli&#xa;Per qualsiasi problematica, reclamo o richiesta di ulteriori informazioni sui siti di offerta di Royale Casino, che non siano stati risolte insieme al servizio di assistenza clienti, accedere al sito www.adm.gov.it&#xa;&#xa;Protezione dei minori&#xa;In linea con la Carta dei Servizi per il gioco responsabile dell&#x2019;ADM, Royale Casino non consente ai minori di 18 anni di giocare sui propri siti di offerta di gioco.&#xa;&#xa;I nostri servizi di gioco non sono stati creati per accogliere ragazzi e adolescenti. Ci impegniamo ad impedire e a rilevare qualsiasi tentativo di accesso da parte di utenti minori di 18 anni. Utilizziamo sofisticati sistemi di verifica per identificare i minori che accedono al nostro software.&#xa;&#xa;Tuttavia, siamo consapevoli che Internet &#xe8; facilmente accessibile da molte abitazioni nel mondo. Per questo riteniamo che le societ&#xe0; che operano nel settore e i genitori debbano collaborare per impedire che i minorenni possano iniziare a giocare con giochi con vincita in denaro. Per proteggere i bambini e/o gli adolescenti, raccomandiamo di installare dei filtri che blocchino l&apos;accesso di minori a programmi e siti non appropriati.&#xa;&#xa;Ci permettiamo di formulare altri consigli per i genitori:&#xa;&#xa;Non lasciare da soli i bambini vicino al computer quando il software di gioco &#xe8; in esecuzione.&#xa;Proteggere i programmi di gioco con una password.&#xa;Non coinvolgere in nessun modo i minorenni nell&apos;attivit&#xe0; di gioco.&#xa;Conservare il nome utente e la password dei siti di gioco e i metodi di pagamento utilizzati lontano dalla portata dei bambini.&#xa;Spiegare ai propri figli le conseguenze legali e i rischi potenziali del gioco praticato dai minorenni.&#xa;Controllare il tempo di utilizzo di Internet da parte dei propri figli.&#xa;Purtroppo nessun sistema &#xe8; infallibile. Qualora si sospetti che un minorenne si sia registrato con Royale Casino, contattare l&apos;ufficio operazioni inviando un&apos;e-mail all&apos;indirizzo: supporto@royalecasino.it&#xa;&#xa;Gestione e prevenzione dei problemi legati al gioco con vincita in denaro&#xa;Royale Casino &#xe8; consapevole che, bench&#xe9; la maggior parte dei giocatori consideri il gioco con vincita in denaro una forma di intrattenimento, alcuni utenti possono diventare ossessionati dalla possibilit&#xe0; di vincere denaro con i giochi che offriamo. Sebbene le ricerche effettuate abbiano dimostrato che solo una percentuale molto bassa di utenti ha problemi gravi con il gioco, abbiamo deciso comunque di impegnarci al massimo per aumentare le misure utili per limitare tale fenomeno:&#xa;&#xa;Il programma di formazione di Royale Casino fornisce ai nostri dipendenti gli strumenti tecnologici e le metodologie adatte a riconoscere e a prendere idonee contromisure in caso di gioco compulsivo o di accesso effettuato da un minorenne.&#xa;Prima di poter giocare sul nostro sito, tutti i giocatori devono impostare i propri limiti massimi di versamento.&#xa;Su indicazione dell&apos;utente, possiamo eliminare il suo nominativo dalla mailing list.&#xa;Abbiamo introdotto il sistema di auto-sospensione dai siti e dalle applicazioni di gioco di Royale Casino, un servizio a disposizione di tutti gli utenti che hanno bisogno di prendersi una pausa. Decorso il periodo di auto-sospensione possiamo consentire all&apos;utente di accedere di nuovo ai nostri servizi di gioco.&#xa;Abbiamo implementato, il sistema di auto-esclusione trasversale che consente al giocatore di auto-escludersi dai siti e dalle applicazioni di gioco di tutti i concessionari del gioco a distanza dell&#x2019;Agenzia delle Dogane e dei Monopoli, attraverso l&#x2019;iscrizione al Registro Unico degli Autoesclusi del Gioco A Distanza gestito dall&#x2019;Agenzia delle Dogane e dei Monopoli Per maggiori informazioni, si rinvia all&#x2019;apposita sottosezione a seguire.&#xa;Importante&#xa;Il gioco con vincita in denaro &#xe8; solo un divertimento. Non &#xe8; un modo per arricchirsi o trovare denaro per pagare i debiti.&#xa;Il gioco con vincita in denaro si basa sulla fortuna e non esistono formule che garantiscono di vincere.&#xa;Giocare solo sulla propria libera scelta.&#xa;Non provare a giocare per recuperare il denaro perso.&#xa;Controllare regolarmente nella Cassa gli importi persi.&#xa;Assicurarsi di aver compreso bene le regole prima di iniziare a giocare.&#xa;Segnali che individuano la presenza di problemi legati al gioco&#xa;L&apos;utente gioca per scappare dalla realt&#xe0;&#xa;L&apos;utente gioca per risolvere i propri problemi economici&#xa;L&apos;utente non &#xe8; in grado di smettere di giocare, indipendentemente dal fatto che abbia vinto o perso&#xa;L&apos;utente gioca fino a quando non ha perso tutto il denaro a disposizione&#xa;L&apos;utente trascura la famiglia per giocare&#xa;Come per tutte le cose, anche un semplice divertimento, se portato all&apos;eccesso, pu&#xf2; avere conseguenze disastrose.&#xa;&#xa;Importante: c&apos;&#xe8; sempre qualcuno a disposizione con cui parlare.&#xa;&#xa;Oltre a poter contattare il nostro team di assistenza, informiamo che &#xe8; attivo e disponibile al contatto da parte del giocatore il numero verde nazionale per le problematiche legate al Gioco d&#x2019;Azzardo, istituito dall&#x2019;Istituto Superiore della Sanit&#xe0;: 800558822, dal luned&#xec; al venerd&#xec;, dalle ore 10.00am alle ore 16.00pm."/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="66" type="rgb"/>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                          <Component id="B_indietro" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel1" min="-2" pref="79" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="TF_username" min="-2" pref="71" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                          <Component id="B_cancella" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                                          <Component id="B_conferma" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="TF_data" min="-2" pref="71" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="Informativa" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="Vai" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel3" min="-2" pref="79" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="TF_nome" min="-2" pref="71" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel4" min="-2" pref="79" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="TF_cognome" min="-2" pref="71" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel2" min="-2" pref="79" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="TF_password" min="-2" pref="71" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace min="0" pref="156" max="32767" attributes="0"/>
+              </Group>
+              <Component id="Errore" alignment="1" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  <Component id="B_indietro" min="-2" pref="39" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="TF_username" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="TF_password" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="TF_nome" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="TF_cognome" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="TF_data" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="Informativa" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Vai" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="Errore" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="B_cancella" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="B_conferma" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="B_indietro">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Indietro"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B_indietroActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="B_cancella">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Cancella"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B_cancellaActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="B_conferma">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Conferma"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B_confermaActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="TF_username">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Username"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Password"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nome"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cognome"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel5">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Data di nascita"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="TF_nome">
+        </Component>
+        <Component class="javax.swing.JTextField" name="TF_cognome">
+        </Component>
+        <Component class="javax.swing.JTextField" name="TF_data">
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="TF_password">
+        </Component>
+        <Component class="javax.swing.JLabel" name="Errore">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="ff" type="rgb"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="Si &#xe8; verificato un errore, per registrarti devi essere maggiorenne!"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="Informativa">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Acconsento di aver preso visione dell&apos;informativa sul gioco responsabile"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InformativaActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="Vai">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cc" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Premi Qui"/>
+            <Property name="borderPainted" type="boolean" value="false"/>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Default Cursor"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="VaiActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel6">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Resources/corwn1.png"/>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>

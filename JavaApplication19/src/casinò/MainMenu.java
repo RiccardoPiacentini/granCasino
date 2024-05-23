@@ -104,14 +104,16 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel1.add(Ippica);
         Ippica.setBounds(110, 340, 550, 150);
 
+        SlotMachine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Group 55 (1).png"))); // NOI18N
         SlotMachine.setContentAreaFilled(false);
+        SlotMachine.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Group 56.png"))); // NOI18N
         SlotMachine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SlotMachineActionPerformed(evt);
             }
         });
         jPanel1.add(SlotMachine);
-        SlotMachine.setBounds(510, 550, 340, 160);
+        SlotMachine.setBounds(500, 550, 362, 168);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Group 51.png"))); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(1250, 720));

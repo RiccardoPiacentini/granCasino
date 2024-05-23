@@ -4,8 +4,9 @@
  */
 package casinò;
 
-import java.awt.Color;
-import java.awt.event.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import static java.lang.Math.random;
@@ -16,9 +17,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-import javax.swing.Timer;
+import javax.swing.*;
 
 /**
  *
@@ -37,6 +36,40 @@ public class Ippica extends javax.swing.JFrame {
         startTimer(); 
         impostaOff();
     }
+    
+    public void startThreadsAndAdvanceProgressBars(JProgressBar[] progressBars) {
+    // Verifica che il numero di progress bar sia esattamente 5
+    if (progressBars.length != 5) {
+        throw new IllegalArgumentException("Devono esserci esattamente 5 progress bar.");
+    }
+
+    for (int i = 0; i < 5; i++) {
+        final int index = i; // Variabile finale per l'uso nel thread
+
+        Thread thread = new Thread(() -> {
+            while (progressBars[index].getValue() < 100) {
+                try {
+                    // Simula un lavoro con una pausa
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                
+                // Avanza la progress bar
+                SwingUtilities.invokeLater(() -> {
+                    int currentValue = progressBars[index].getValue();
+                    if (currentValue < 100) {
+                        progressBars[index].setValue(currentValue + 1);
+                    }
+                });
+            }
+        });
+
+        // Avvia il thread
+        thread.start();
+    }
+}
+
     
     public void impostaOff(){
         jProgressBar1.setVisible(false);
@@ -63,8 +96,8 @@ public class Ippica extends javax.swing.JFrame {
         File inputFile = new File("input2.txt");
         Scanner reader = new Scanner(inputFile);
         while(reader.hasNextLine()){
-                 riga = reader.nextLine();
-                 names.add(riga);
+            riga = reader.nextLine();
+            names.add(riga);
         }
         Collections.shuffle(names);
         jLabel12.setText(names.get(0));
@@ -760,6 +793,7 @@ public class Ippica extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_P1Cav1ActionPerformed
 
+    @SuppressWarnings("empty-statement")
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             Thread.sleep(5000);
@@ -767,6 +801,9 @@ public class Ippica extends javax.swing.JFrame {
             Logger.getLogger(Ippica.class.getName()).log(Level.SEVERE, null, ex);
         }
         impostaOn();
+        JProgressBar[] progressBars = {jProgressBar1, jProgressBar2, jProgressBar3, jProgressBar4, jProgressBar5};
+        startThreadsAndAdvanceProgressBars(progressBars);
+        impostaOff();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -794,6 +831,8 @@ public class Ippica extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Ippica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

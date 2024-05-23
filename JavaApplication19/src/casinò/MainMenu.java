@@ -40,25 +40,28 @@ public class MainMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
         Credit = new javax.swing.JLabel();
         B_account = new javax.swing.JButton();
+        Ippica2 = new javax.swing.JButton();
+        BlackJackGame = new javax.swing.JButton();
+        Ippica = new javax.swing.JButton();
+        SlotMachine = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        B_blackjack = new javax.swing.JButton();
-        B_blackjack1 = new javax.swing.JButton();
-        Slot = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1920, 1080));
+        setMaximumSize(new java.awt.Dimension(1270, 740));
+        setMinimumSize(new java.awt.Dimension(1270, 740));
+        setPreferredSize(new java.awt.Dimension(1270, 750));
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
-
-        jPanel2.setBackground(new java.awt.Color(57, 57, 57));
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setLayout(null);
 
         Credit.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         Credit.setForeground(new java.awt.Color(255, 204, 51));
         Credit.setText("0,00€");
+        jPanel1.add(Credit);
+        Credit.setBounds(1160, 10, 50, 30);
 
         B_account.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/user.png"))); // NOI18N
         B_account.setContentAreaFilled(false);
@@ -67,89 +70,57 @@ public class MainMenu extends javax.swing.JFrame {
                 B_accountActionPerformed(evt);
             }
         });
+        jPanel1.add(B_account);
+        B_account.setBounds(1200, 0, 46, 47);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(533, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(255, 255, 255)
-                .addComponent(Credit)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(B_account)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(Credit))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(B_account))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        B_blackjack.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        B_blackjack.setText("Blackjack");
-        B_blackjack.addActionListener(new java.awt.event.ActionListener() {
+        Ippica2.setContentAreaFilled(false);
+        Ippica2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Group 54.png"))); // NOI18N
+        Ippica2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_blackjackActionPerformed(evt);
+                Ippica2ActionPerformed(evt);
             }
         });
+        jPanel1.add(Ippica2);
+        Ippica2.setBounds(710, 340, 540, 150);
 
-        B_blackjack1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        B_blackjack1.setText("Ippica");
-        B_blackjack1.addActionListener(new java.awt.event.ActionListener() {
+        BlackJackGame.setContentAreaFilled(false);
+        BlackJackGame.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        BlackJackGame.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Group 52.png"))); // NOI18N
+        BlackJackGame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_blackjack1ActionPerformed(evt);
+                BlackJackGameActionPerformed(evt);
             }
         });
+        jPanel1.add(BlackJackGame);
+        BlackJackGame.setBounds(510, 120, 340, 150);
 
-        Slot.setText("Slot");
-        Slot.addActionListener(new java.awt.event.ActionListener() {
+        Ippica.setContentAreaFilled(false);
+        Ippica.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Group 53.png"))); // NOI18N
+        Ippica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SlotActionPerformed(evt);
+                IppicaActionPerformed(evt);
             }
         });
+        jPanel1.add(Ippica);
+        Ippica.setBounds(110, 340, 550, 150);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(B_blackjack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(B_blackjack1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(63, 63, 63)
-                .addComponent(Slot)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(99, 99, 99)
-                        .addComponent(B_blackjack))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(187, 187, 187)
-                        .addComponent(Slot)))
-                .addGap(77, 77, 77)
-                .addComponent(B_blackjack1)
-                .addGap(0, 433, Short.MAX_VALUE))
-        );
+        SlotMachine.setContentAreaFilled(false);
+        SlotMachine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SlotMachineActionPerformed(evt);
+            }
+        });
+        jPanel1.add(SlotMachine);
+        SlotMachine.setBounds(510, 550, 340, 160);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Group 51.png"))); // NOI18N
+        jLabel1.setPreferredSize(new java.awt.Dimension(1250, 720));
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(0, 0, 1250, 730);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Group 30 (1).png"))); // NOI18N
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(0, 0, 1250, 720);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -157,12 +128,12 @@ public class MainMenu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -238,23 +209,23 @@ public class MainMenu extends javax.swing.JFrame {
         account.setVisible(true);
     }//GEN-LAST:event_B_accountActionPerformed
 
-    private void B_blackjackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_blackjackActionPerformed
+    private void BlackJackGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlackJackGameActionPerformed
         this.dispose();
         BlackJackGame black = new BlackJackGame();
         black.setVisible(true);
-    }//GEN-LAST:event_B_blackjackActionPerformed
+    }//GEN-LAST:event_BlackJackGameActionPerformed
 
-    private void B_blackjack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_blackjack1ActionPerformed
-        try {
+    private void IppicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IppicaActionPerformed
+       try {
             this.dispose();
             Ippica ippica = new Ippica();
             ippica.setVisible(true);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_B_blackjack1ActionPerformed
+    }//GEN-LAST:event_IppicaActionPerformed
 
-    private void SlotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SlotActionPerformed
+    private void SlotMachineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SlotMachineActionPerformed
         try {
             this.dispose();
             SlotMachineGUI slot=new SlotMachineGUI();
@@ -262,9 +233,17 @@ public class MainMenu extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-    }//GEN-LAST:event_SlotActionPerformed
+    }//GEN-LAST:event_SlotMachineActionPerformed
+
+    private void Ippica2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ippica2ActionPerformed
+        try {
+            this.dispose();
+            Ippica ippica = new Ippica();
+            ippica.setVisible(true);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_Ippica2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -304,12 +283,13 @@ public class MainMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton B_account;
-    private javax.swing.JButton B_blackjack;
-    private javax.swing.JButton B_blackjack1;
+    private javax.swing.JButton BlackJackGame;
     private javax.swing.JLabel Credit;
-    private javax.swing.JButton Slot;
+    private javax.swing.JButton Ippica;
+    private javax.swing.JButton Ippica2;
+    private javax.swing.JButton SlotMachine;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

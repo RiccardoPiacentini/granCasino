@@ -226,7 +226,7 @@ public void setBackgroundMusicClip(Clip clip) {
     private void winAnimation(){
         play("win.wav", false);
         play("jackpot_1.wav",false);
-        EffectWin.setVisible(true);
+        //EffectWin.setVisible(true);
         Timer timer = new Timer(120, new ActionListener() {
             private int frame = 2;
             private int times = 2;
@@ -384,11 +384,11 @@ public void setBackgroundMusicClip(Clip clip) {
                     if (slotMachine.wonJackpot()) {
                         jackpotAnimation(); // Jackpot win animation
                     } else if (slotMachine.wonTwoSevens()) {
-                        //jackpotAnimation();
-                        doubleSevenAnimation(); // Double seven win animation
+                        jackpotAnimation();
+                        //doubleSevenAnimation(); // Double seven win animation
                     } else if (slotMachine.wonCombination()){
-                        //jackpotAnimation();
-                        winAnimation(); // Normal win animation
+                        jackpotAnimation();
+                        //winAnimation(); // Normal win animation
                     }
 
                     ((Timer) e.getSource()).stop(); // Stop the timer at the end of the animation

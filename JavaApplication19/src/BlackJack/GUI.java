@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.awt.event.WindowEvent;
 import java.util.*;
 
 public class GUI extends JFrame {
@@ -38,8 +37,8 @@ public class GUI extends JFrame {
 	Color cPlayer = new Color(25,55,255);
 	
 	//strings used
-	String questHitStay = new String("Hit or Stay?");
-	String questPlayMore = new String("Play more?");
+	String questHitStay = new String("Carta o Stai?");
+	String questPlayMore = new String("Giocare ancora?");
 	
 	//colors used
 	Color colorBackground = new Color(39,119,20);
@@ -94,7 +93,7 @@ public class GUI extends JFrame {
 	
 	public GUI() {
 		this.setTitle("Blackjack");
-		this.setBounds((sW-aW-6)/2, (sH-aH-29)/2, aW+6, aH+29);
+		this.setBounds((sW-aW-6)/2, (sH-aH-29)/2, 1250, 720);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
@@ -116,7 +115,7 @@ public class GUI extends JFrame {
 		bHit.setBounds(1000, 200, 100, 50);
 		bHit.setBackground(colorButton);
 		bHit.setFont(fontButton);
-		bHit.setText("HIT");
+		bHit.setText("Carta");
 		board.add(bHit);
 		
 		ActStay actStay = new ActStay();
@@ -124,7 +123,7 @@ public class GUI extends JFrame {
 		bStay.setBounds(1150, 200, 100, 50);
 		bStay.setBackground(colorButton);
 		bStay.setFont(fontButton);
-		bStay.setText("STAY");
+		bStay.setText("Stai");
 		board.add(bStay);
 		
 		ActYes actYes = new ActYes();
@@ -132,7 +131,7 @@ public class GUI extends JFrame {
 		bYes.setBounds(1000, 600, 100, 50);
 		bYes.setBackground(colorButton);
 		bYes.setFont(fontButton);
-		bYes.setText("YES");
+		bYes.setText("SI");
 		board.add(bYes);
 		
 		ActNo actNo = new ActNo();
@@ -253,18 +252,18 @@ public class GUI extends JFrame {
 		}
 		
 		if (pPoints > 21 && dPoints > 21) {
-			Log.add(new Message("Nobody wins!", "Dealer"));
+			Log.add(new Message("Pareggio!", "Dealer"));
 		} else if (dPoints > 21) {
-			Log.add(new Message("You win!", "Player"));
+			Log.add(new Message("Hai vinto!", "Player"));
 			Main.pWins++;
 		} else if (pPoints > 21) {
-			Log.add(new Message("Dealer wins!", "Dealer"));
+			Log.add(new Message("Il banco vince!", "Dealer"));
 			Main.dWins++;
 		} else if (pPoints > dPoints) {
-			Log.add(new Message("You win!", "Player"));
+			Log.add(new Message("Hai vinto","Player"));
 			Main.pWins++;
 		} else {
-			Log.add(new Message("Dealer wins!", "Dealer"));
+			Log.add(new Message("Il banco vince!", "Dealer"));
 			Main.dWins++;
 		}
 		
@@ -303,7 +302,7 @@ public class GUI extends JFrame {
 			} else {
 				tempMax = dMinTotal;
 			}
-			String mess = ("Dealer decided to hit! (total: " + Integer.toString(tempMax) + ")");
+			String mess = ("Il banco pesca! (totale: " + Integer.toString(tempMax) + ")");
 			Log.add(new Message(mess, "Dealer"));
 		//	System.out.println(mess);
 			tempC = rand.nextInt(52);
@@ -320,7 +319,7 @@ public class GUI extends JFrame {
 			} else {
 				tempMax = dMinTotal;
 			}
-			String mess = ("Dealer decided to stay! (total: " + Integer.toString(tempMax) + ")");
+			String mess = ("Il banco ha deciso di stare! (totale: " + Integer.toString(tempMax) + ")");
 			Log.add(new Message(mess, "Dealer"));
 			setWinner();
 			dealer_turn = false;
@@ -361,8 +360,14 @@ public class GUI extends JFrame {
 			} else {
 				tempMax = pMinTotal;
 			}
-			String mess = ("Auto pass! (total: " + Integer.toString(tempMax) + ")");
-			Log.add(new Message(mess, "Player"));
+                        if (pMaxTotal==21){
+                            String mess="Il giocatore ha fatto 21";
+                            Log.add(new Message(mess, "Player"));
+                        }else{
+                            String mess = ("Il giocatore ha sballato! (totale: " + Integer.toString(tempMax) + ")");
+                            Log.add(new Message(mess, "Player"));
+
+                        }
 			hit_stay_q = false;
 			dealer_turn = true;
 		}
@@ -374,8 +379,15 @@ public class GUI extends JFrame {
 			} else {
 				tempMax = dMinTotal;
 			}
-			String mess = ("Dealer auto pass! (total: " + Integer.toString(tempMax) + ")");
-			Log.add(new Message(mess, "Dealer"));
+                        if(dMaxTotal==21){
+                            String mess= "Il banco ha fatto 21";
+                            Log.add(new Message(mess, "Dealer"));
+                        }
+                        else{
+                            String mess = ("Il banco ha sballato! (totale: " + Integer.toString(tempMax) + ")");
+                            Log.add(new Message(mess, "Dealer"));
+                        }
+                        
 			setWinner();
 			dealer_turn = false;
 			play_more_q = true;
@@ -545,13 +557,13 @@ public class GUI extends JFrame {
 				
 				g.setColor(Color.black);
 				g.setFont(fontQuest);
-				g.drawString("Your total: ", gridX+gridW+60, gridY+40);
+				g.drawString("Il tuo totale: ", gridX+gridW+60, gridY+40);
 				if (pMaxTotal <= 21) {
 					g.drawString(Integer.toString(pMaxTotal), gridX+gridW+60, gridY+120);
 				} else {
 					g.drawString(Integer.toString(pMinTotal), gridX+gridW+60, gridY+120);
 				}
-				g.drawString("Dealer's total: ", gridX+gridW+60, gridY+240);
+				g.drawString("Il totale del banco: ", gridX+gridW+60, gridY+240);
 				if (dMaxTotal <= 21) {
 					g.drawString(Integer.toString(dMaxTotal), gridX+gridW+60, gridY+320);
 				} else {
@@ -626,7 +638,7 @@ public class GUI extends JFrame {
 				} else {
 					tempMax = pMinTotal;
 				}
-				String mess = ("You decided to hit! (total: " + Integer.toString(tempMax) + ")");
+				String mess = ("Hai deciso di pescare! (totale: " + Integer.toString(tempMax) + ")");
 				Log.add(new Message(mess, "Player"));
 				
 				tempC = rand.nextInt(52);
@@ -654,7 +666,7 @@ public class GUI extends JFrame {
 				} else {
 					tempMax = pMinTotal;
 				}
-				String mess = ("You decided to stay! (total: " + Integer.toString(tempMax) + ")");
+				String mess = ("Hai deciso di stare! (totale: " + Integer.toString(tempMax) + ")");
 				Log.add(new Message(mess, "Player"));
 				
 				hit_stay_q = false;

@@ -803,7 +803,6 @@ public class Ippica extends javax.swing.JFrame {
         impostaOn();
         JProgressBar[] progressBars = {jProgressBar1, jProgressBar2, jProgressBar3, jProgressBar4, jProgressBar5};
         startThreadsAndAdvanceProgressBars(progressBars);
-        impostaOff();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

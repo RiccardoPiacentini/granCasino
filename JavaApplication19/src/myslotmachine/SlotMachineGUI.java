@@ -715,7 +715,7 @@ public void setBackgroundMusicClip(Clip clip) {
     }//GEN-LAST:event_chip_25MouseExited
 
     private void chip_50MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chip_50MouseEntered
-        if(!flag_chip_50) chip_50.setIcon(new ImageIcon(getClass().getResource("/Foto/chip_50_B.png"))); //luminosità +45
+        if(!flag_chip_50) chip_50.setIcon(new ImageIcon(getClass().getResource("/Foto/chip_50_A.png"))); //luminosità +45
     }//GEN-LAST:event_chip_50MouseEntered
 
     private void chip_50MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chip_50MouseExited

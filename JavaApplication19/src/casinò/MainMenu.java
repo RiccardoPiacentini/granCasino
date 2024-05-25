@@ -4,6 +4,7 @@
  */
 package casinò;
 
+import cards.BlackJack;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -213,8 +214,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void BlackJackGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlackJackGameActionPerformed
         this.dispose();
-        BlackJackGame black = new BlackJackGame();
-        black.setVisible(true);
+        new BlackJack();        
     }//GEN-LAST:event_BlackJackGameActionPerformed
 
     private void IppicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IppicaActionPerformed

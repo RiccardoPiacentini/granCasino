@@ -4,7 +4,9 @@ import casinò.MainMenu;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -93,14 +95,19 @@ public class BlackJack {
                     String message = "";
                     if (playerSum > 21) {
                         message = "Hai perso!";
+                        credit-=5;
                     } else if (dealerSum > 21) {
                         message = "Hai vinto!";
+                        credit+=10;
                     } else if (playerSum == dealerSum) {
                         message = "Pareggio!";
+                        
                     } else if (playerSum > dealerSum) {
                         message = "Hai vinto!";
+                        credit+=10;
                     } else {
                         message = "Hai perso!";
+                         credit-=5;
                     }
 
                     g.setFont(new Font("Arial", Font.PLAIN, 30));

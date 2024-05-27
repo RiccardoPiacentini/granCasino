@@ -382,7 +382,7 @@ public void setBackgroundMusicClip(Clip clip) {
                     slot2.setIcon(new ImageIcon(getClass().getResource(slotIcons[slotMachine.getNumber(2)])));
 
                     if (slotMachine.wonJackpot()) {
-                        //jackpotAnimation(); // Jackpot win animation
+                        jackpotAnimation(); // Jackpot win animation
                     } else if (slotMachine.wonTwoSevens()) {
                         //jackpotAnimation();
                         doubleSevenAnimation(); // Double seven win animation

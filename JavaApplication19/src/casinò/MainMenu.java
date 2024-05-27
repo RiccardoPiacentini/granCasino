@@ -42,6 +42,10 @@ public class MainMenu extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         Credit = new javax.swing.JLabel();
+        bingoJB = new javax.swing.JButton();
+        briscolaBJ = new javax.swing.JButton();
+        pokerJB = new javax.swing.JButton();
+        WheelJB = new javax.swing.JButton();
         B_account = new javax.swing.JButton();
         Ippica2 = new javax.swing.JButton();
         BlackJackGame = new javax.swing.JButton();
@@ -64,6 +68,52 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel1.add(Credit);
         Credit.setBounds(1160, 10, 50, 30);
 
+        bingoJB.setBorderPainted(false);
+        bingoJB.setContentAreaFilled(false);
+        bingoJB.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Group 56_1.png"))); // NOI18N
+        bingoJB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bingoJBActionPerformed(evt);
+            }
+        });
+        jPanel1.add(bingoJB);
+        bingoJB.setBounds(110, 560, 340, 150);
+
+        briscolaBJ.setBorderPainted(false);
+        briscolaBJ.setContentAreaFilled(false);
+        briscolaBJ.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Group 59 (1).png"))); // NOI18N
+        briscolaBJ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                briscolaBJActionPerformed(evt);
+            }
+        });
+        jPanel1.add(briscolaBJ);
+        briscolaBJ.setBounds(910, 120, 340, 150);
+
+        pokerJB.setBorderPainted(false);
+        pokerJB.setContentAreaFilled(false);
+        pokerJB.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Group 58.png"))); // NOI18N
+        pokerJB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pokerJBActionPerformed(evt);
+            }
+        });
+        jPanel1.add(pokerJB);
+        pokerJB.setBounds(110, 120, 340, 150);
+
+        WheelJB.setActionCommand("");
+        WheelJB.setBorderPainted(false);
+        WheelJB.setContentAreaFilled(false);
+        WheelJB.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        WheelJB.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Group 60.png"))); // NOI18N
+        WheelJB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                WheelJBActionPerformed(evt);
+            }
+        });
+        jPanel1.add(WheelJB);
+        WheelJB.setBounds(910, 560, 340, 150);
+
         B_account.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/user.png"))); // NOI18N
         B_account.setContentAreaFilled(false);
         B_account.addActionListener(new java.awt.event.ActionListener() {
@@ -75,7 +125,7 @@ public class MainMenu extends javax.swing.JFrame {
         B_account.setBounds(1200, 0, 46, 47);
 
         Ippica2.setContentAreaFilled(false);
-        Ippica2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Group 54.png"))); // NOI18N
+        Ippica2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Group 57.png"))); // NOI18N
         Ippica2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Ippica2ActionPerformed(evt);
@@ -130,9 +180,8 @@ public class MainMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1250, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,6 +296,26 @@ public class MainMenu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Ippica2ActionPerformed
 
+    private void pokerJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pokerJBActionPerformed
+        nonDisp na=new nonDisp();
+        na.setVisible(true);
+    }//GEN-LAST:event_pokerJBActionPerformed
+
+    private void briscolaBJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_briscolaBJActionPerformed
+        nonDisp na=new nonDisp();
+        na.setVisible(true);
+    }//GEN-LAST:event_briscolaBJActionPerformed
+
+    private void bingoJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bingoJBActionPerformed
+        nonDisp na=new nonDisp();
+        na.setVisible(true);
+    }//GEN-LAST:event_bingoJBActionPerformed
+
+    private void WheelJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WheelJBActionPerformed
+        nonDisp na=new nonDisp();
+        na.setVisible(true);
+    }//GEN-LAST:event_WheelJBActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -290,8 +359,12 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton Ippica;
     private javax.swing.JButton Ippica2;
     private javax.swing.JButton SlotMachine;
+    private javax.swing.JButton WheelJB;
+    private javax.swing.JButton bingoJB;
+    private javax.swing.JButton briscolaBJ;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton pokerJB;
     // End of variables declaration//GEN-END:variables
 }

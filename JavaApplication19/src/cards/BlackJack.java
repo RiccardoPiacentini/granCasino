@@ -3,6 +3,9 @@ package cards;
 import casinò.MainMenu;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
@@ -111,6 +114,11 @@ public class BlackJack {
                     buttonPanel.repaint();
                 }
 
+                // Draw the credit on the screen
+                g.setFont(new Font("Arial", Font.PLAIN, 20));
+                g.setColor(Color.white);
+                g.drawString("Credito: " + credit, 20, 300);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -122,7 +130,11 @@ public class BlackJack {
     JButton replayButton = new JButton("Rigioca");
     JButton mainMenuButton = new JButton("Main Menu");
 
+    private int credit;
+
     public BlackJack() {
+        readCreditFromFile(); // Read credit at the beginning
+
         startGame();
 
         frame.setVisible(true);
@@ -238,37 +250,52 @@ public class BlackJack {
             }
         }
     }
-public void shuffleDeck() {
-    for (int i = 0; i < deck.size(); i++) {
-        int j = random.nextInt(deck.size());
-        Card currCard = deck.get(i);
-        Card randomCard = deck.get(j);
-        deck.set(i, randomCard);
-        deck.set(j, currCard);
-    }
-}
 
-public int reducePlayerAce() {
-    while (playerSum > 21 && playerAceCount > 0) {
-        playerSum -= 10;
-        playerAceCount -= 1;
-    }
-    return playerSum;
-}
-
-public int reduceDealerAce() {
-    while (dealerSum > 21 && dealerAceCount > 0) {
-        dealerSum -= 10;
-        dealerAceCount -= 1;
-    }
-    return dealerSum;
-}
-
-public static void main(String[] args) {
-    SwingUtilities.invokeLater(new Runnable() {
-        public void run() {
-            new BlackJack();
+    public void shuffleDeck() {
+        for (int i = 0; i < deck.size(); i++) {
+            int j = random.nextInt(deck.size());
+            Card currCard = deck.get(i);
+            Card randomCard = deck.get(j);
+            deck.set(i, randomCard);
+            deck.set(j, currCard);
         }
-    });
-}
+    }
+
+    public int reducePlayerAce() {
+        while (playerSum > 21 && playerAceCount > 0) {
+            playerSum -= 10;
+            playerAceCount -= 1;
+        }
+        return playerSum;
+    }
+
+    public int reduceDealerAce() {
+        while (dealerSum > 21 && dealerAceCount > 0) {
+            dealerSum -= 10;
+            dealerAceCount -= 1;
+        }
+        return dealerSum;
+    }
+
+    public void readCreditFromFile() {
+        try (BufferedReader br = new BufferedReader(new FileReader("accountTemp.txt"))) {
+            String line = br.readLine();  // Read the first line from the file
+            if (line != null) {
+                String[] parts = line.split(",");  // Split the line by comma
+                if (parts.length >= 3) {
+                    credit = Integer.parseInt(parts[2].trim());  // Get the third element and convert to int
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new BlackJack();
+            }
+        });
+    }
 }

@@ -3,11 +3,7 @@ package cards;
 import casinò.MainMenu;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
@@ -71,8 +67,12 @@ public class BlackJack {
 
             try {
                 Image hiddenCardImg = new ImageIcon(getClass().getResource("BACK.png")).getImage();
+                int visibleDealerSum = 0;
                 if (!stayButton.isEnabled()) {
                     hiddenCardImg = new ImageIcon(getClass().getResource(hiddenCard.getImagePath())).getImage();
+                    visibleDealerSum = dealerSum;
+                } else {
+                    visibleDealerSum = dealerHand.get(0).getValue();
                 }
                 g.drawImage(hiddenCardImg, 20, 20, cardWidth, cardHeight, null);
 
@@ -80,6 +80,9 @@ public class BlackJack {
                     Card card = dealerHand.get(i);
                     Image cardImg = new ImageIcon(getClass().getResource(card.getImagePath())).getImage();
                     g.drawImage(cardImg, cardWidth + 25 + (cardWidth + 5) * i, 20, cardWidth, cardHeight, null);
+                    if (stayButton.isEnabled()) {
+                        visibleDealerSum += card.getValue();
+                    }
                 }
 
                 for (int i = 0; i < playerHand.size(); i++) {
@@ -91,23 +94,21 @@ public class BlackJack {
                 if (!stayButton.isEnabled()) {
                     dealerSum = reduceDealerAce();
                     playerSum = reducePlayerAce();
-
                     String message = "";
                     if (playerSum > 21) {
                         message = "Hai perso!";
-                        credit-=5;
+                        credit -= 5;
                     } else if (dealerSum > 21) {
                         message = "Hai vinto!";
-                        credit+=10;
+                        credit += 10;
                     } else if (playerSum == dealerSum) {
                         message = "Pareggio!";
-                        
                     } else if (playerSum > dealerSum) {
                         message = "Hai vinto!";
-                        credit+=10;
+                        credit += 10;
                     } else {
                         message = "Hai perso!";
-                         credit-=5;
+                        credit -= 5;
                     }
 
                     g.setFont(new Font("Arial", Font.PLAIN, 30));
@@ -124,7 +125,17 @@ public class BlackJack {
                 // Draw the credit on the screen
                 g.setFont(new Font("Arial", Font.PLAIN, 20));
                 g.setColor(Color.white);
-                g.drawString("Credito: " + credit, 20, 300);
+                g.drawString("Credito: " + credit, 20, 295);
+                g.drawString("Puntata: 5€", 475, 295);
+
+                // Draw the sums above the cards
+                g.setFont(new Font("Arial", Font.PLAIN, 20));
+                g.setColor(Color.yellow);
+                if(stayButton.isEnabled()){
+                    visibleDealerSum/=2;
+                }
+                g.drawString("Banco: " + visibleDealerSum, 20, 190);
+                g.drawString("Giocatore: " + playerSum, 20, 315);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -204,6 +215,7 @@ public class BlackJack {
 
         mainMenuButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                saveCreditToFile(); // Save credit before returning to main menu
                 frame.dispose();
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
@@ -293,6 +305,36 @@ public class BlackJack {
                     credit = Integer.parseInt(parts[2].trim());  // Get the third element and convert to int
                 }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveCreditToFile() {
+        try {
+            File file = new File("accountTemp.txt");
+            if (!file.exists()) {
+                return;
+            }
+
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            StringBuilder content = new StringBuilder();
+            String line;
+
+            if ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length >= 3) {
+                    parts[2] = Integer.toString(credit); // Update the credit value
+                    line = String.join(",", parts);
+                }
+            }
+            content.append(line);
+            br.close();
+
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+            bw.write(content.toString());
+            bw.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -54,6 +54,11 @@ public void startThreadsAndAdvanceProgressBars(JProgressBar[] progressBars) {
         throw new IllegalArgumentException("Devono esserci esattamente 5 progress bar.");
     }
 
+    // Imposta i nomi delle progress bar
+    for (int i = 0; i < progressBars.length; i++) {
+        progressBars[i].setName("Cavallo " + (i + 1));
+    }
+
     // Azzera i progress bar
     for (JProgressBar progressBar : progressBars) {
         progressBar.setValue(0);
@@ -102,11 +107,23 @@ public void startThreadsAndAdvanceProgressBars(JProgressBar[] progressBars) {
             if (completedCount == 2) {
                 SwingUtilities.invokeLater(() -> {
                     String podiumMessage = "Podio:\n";
-                    for (int j = 0; j < 3; j++) {
-                        podiumMessage += progressBars[threadCompletionOrder[j]].getString() + "\n";
-                    }
+
+                        int threadNumber = threadCompletionOrder[0] + 1; // Numero del thread
+                        int vincitore = threadNumber; // Vincitore
+                        int secondo = threadNumber + 5; // Secondo
+                        int terzo = threadNumber + 5; // Terzo
+                        
+                        String nomeVincitore = progressBars[threadCompletionOrder[0]].getString(); // Nome del vincitore
+                        String nomeSecondo = progressBars[threadCompletionOrder[1]].getString(); // Nome del secondo
+                        String nomeTerzo = progressBars[threadCompletionOrder[2]].getString(); // Nome del terzo
+                        
+                        // Aggiungi nome del primo, secondo e terzo al messaggio del podio
+                        podiumMessage += "Primo: " + nomeVincitore + "\n";
+                        podiumMessage += "Secondo: " + nomeSecondo + "\n";
+                        podiumMessage += "Terzo: " + nomeTerzo + "\n";
+
                     JOptionPane.showMessageDialog(null, podiumMessage);
-                    
+                    controllovincita(vincitore, secondo, terzo);
                     try {
                         // Esegui ulteriori azioni dopo la visualizzazione del podio
                         doAdditionalActions();
@@ -134,7 +151,33 @@ private void doAdditionalActions() throws FileNotFoundException {
 }
 
 
-
+public void controllovincita(int primo, int secondo, int terzo){
+    String posizione = jLabel22.getText();
+    int pos = Integer.parseInt(posizione);  
+    if (pos == primo) {
+        String vincita = jLabel2.getText();
+        String credito = jLabel20.getText();
+        Double vin = Double.parseDouble(vincita);
+        Double cre = Double.parseDouble(credito);
+        Double tot = cre+vin;
+        jLabel20.setText(Double.toString(tot));
+    } else if (pos == secondo) {
+        String vincita = jLabel2.getText();
+        String credito = jLabel20.getText();
+        Double vin = Double.parseDouble(vincita);
+        Double cre = Double.parseDouble(credito);
+        Double tot = cre+vin;
+        jLabel20.setText(Double.toString(tot));
+    } else if (pos == terzo) {
+        String vincita = jLabel2.getText();
+        String credito = jLabel20.getText();
+        Double vin = Double.parseDouble(vincita);
+        Double cre = Double.parseDouble(credito);
+        Double tot = cre+vin;
+        jLabel20.setText(Double.toString(tot));
+    }
+    return;
+}
 
     
     public void impostaOff(){
@@ -320,6 +363,7 @@ private void doAdditionalActions() throws FileNotFoundException {
         jButton1 = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -641,6 +685,8 @@ private void doAdditionalActions() throws FileNotFoundException {
         jLabel1.setPreferredSize(new java.awt.Dimension(1920, 1080));
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, -190, 1920, 1080);
+        jPanel1.add(jLabel22);
+        jLabel22.setBounds(390, 590, 0, 0);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -669,6 +715,7 @@ private void doAdditionalActions() throws FileNotFoundException {
             Double ris = (val * quo)/100;
             String risultato = Double.toString(ris);
             jLabel2.setText(risultato);
+            jLabel22.setText("4");
         } else {
             P1Cav4.setBackground(Color.WHITE);
             jLabel2.setText(" ");
@@ -686,6 +733,7 @@ private void doAdditionalActions() throws FileNotFoundException {
             Double ris = (val * quo)/100;
             String risultato = Double.toString(ris);
             jLabel2.setText(risultato);
+            jLabel22.setText("6");
         } else {
             P12Cav1.setBackground(Color.WHITE);
             jLabel2.setText(" ");
@@ -703,6 +751,7 @@ private void doAdditionalActions() throws FileNotFoundException {
             Double ris = (val * quo)/100;
             String risultato = Double.toString(ris);
             jLabel2.setText(risultato);
+            jLabel22.setText("5");
         } else {
             P1Cav5.setBackground(Color.WHITE);
             jLabel2.setText(" ");
@@ -720,6 +769,7 @@ private void doAdditionalActions() throws FileNotFoundException {
             Double ris = (val * quo)/100;
             String risultato = Double.toString(ris);
             jLabel2.setText(risultato);
+            jLabel22.setText("7");
         } else {
             P12Cav2.setBackground(Color.WHITE);
             jLabel2.setText(" ");
@@ -737,6 +787,7 @@ private void doAdditionalActions() throws FileNotFoundException {
             Double ris = (val * quo)/100;
             String risultato = Double.toString(ris);
             jLabel2.setText(risultato);
+            jLabel22.setText("11");
         } else {
             P123Cav1.setBackground(Color.WHITE);
             jLabel2.setText(" ");
@@ -754,6 +805,7 @@ private void doAdditionalActions() throws FileNotFoundException {
             Double ris = (val * quo)/100;
             String risultato = Double.toString(ris);
             jLabel2.setText(risultato);
+            jLabel22.setText("2");
         } else {
             P1Cav2.setBackground(Color.WHITE);
             jLabel2.setText(" ");
@@ -771,6 +823,7 @@ private void doAdditionalActions() throws FileNotFoundException {
             Double ris = (val * quo)/100;
             String risultato = Double.toString(ris);
             jLabel2.setText(risultato);
+            jLabel22.setText("15");
         } else {
             P123Cav5.setBackground(Color.WHITE);
             jLabel2.setText(" ");
@@ -788,6 +841,7 @@ private void doAdditionalActions() throws FileNotFoundException {
             Double ris = (val * quo)/100;
             String risultato = Double.toString(ris);
             jLabel2.setText(risultato);
+            jLabel22.setText("12");
         } else {
             P123Cav2.setBackground(Color.WHITE);
             jLabel2.setText(" ");
@@ -805,6 +859,7 @@ private void doAdditionalActions() throws FileNotFoundException {
             Double ris = (val * quo)/100;
             String risultato = Double.toString(ris);
             jLabel2.setText(risultato);
+            jLabel22.setText("3");
         } else {
             P1Cav3.setBackground(Color.WHITE);
             jLabel2.setText(" ");
@@ -822,6 +877,7 @@ private void doAdditionalActions() throws FileNotFoundException {
             Double ris = (val * quo)/100;
             String risultato = Double.toString(ris);
             jLabel2.setText(risultato);
+            jLabel22.setText("8");
         } else {
             P12Cav3.setBackground(Color.WHITE);
             jLabel2.setText(" ");
@@ -839,6 +895,7 @@ private void doAdditionalActions() throws FileNotFoundException {
             Double ris = (val * quo)/100;
             String risultato = Double.toString(ris);
             jLabel2.setText(risultato);
+            jLabel22.setText("13");
         } else {
             P123Cav3.setBackground(Color.WHITE);
             jLabel2.setText(" ");
@@ -856,6 +913,7 @@ private void doAdditionalActions() throws FileNotFoundException {
             Double ris = (val * quo)/100;
             String risultato = Double.toString(ris);
             jLabel2.setText(risultato);
+            jLabel22.setText("10");
         } else {
             P12Cav5.setBackground(Color.WHITE);
             jLabel2.setText(" ");
@@ -873,6 +931,7 @@ private void doAdditionalActions() throws FileNotFoundException {
             Double ris = (val * quo)/100;
             String risultato = Double.toString(ris);
             jLabel2.setText(risultato);
+            jLabel22.setText("14");
         } else {
             P123Cav4.setBackground(Color.WHITE);
             jLabel2.setText(" ");
@@ -890,6 +949,7 @@ private void doAdditionalActions() throws FileNotFoundException {
             Double ris = (val * quo)/100;
             String risultato = Double.toString(ris);
             jLabel2.setText(risultato);
+            jLabel22.setText("9");
         } else {
             P12Cav4.setBackground(Color.WHITE);
             jLabel2.setText(" ");
@@ -907,6 +967,7 @@ private void doAdditionalActions() throws FileNotFoundException {
             Double ris = (val * quo)/100;
             String risultato = Double.toString(ris);
             jLabel2.setText(risultato);
+            jLabel22.setText("1");
         } else {
             P1Cav1.setBackground(Color.WHITE);
             jLabel2.setText(" ");
@@ -919,6 +980,7 @@ private void doAdditionalActions() throws FileNotFoundException {
     // Recupera i valori di puntata e credito e rimuovi eventuali spazi
     String puntataStr = jTextField1.getText().trim();
     String creditoStr = jLabel20.getText().trim();
+    
 
     // Debug: Stampa i valori per assicurarsi che siano corretti
     System.out.println("Puntata inserita: " + puntataStr);
@@ -936,6 +998,8 @@ private void doAdditionalActions() throws FileNotFoundException {
         impostaOn();
         JProgressBar[] progressBars = {jProgressBar1, jProgressBar2, jProgressBar3, jProgressBar4, jProgressBar5};
         startThreadsAndAdvanceProgressBars(progressBars);
+        credito=credito-puntata;
+        jLabel20.setText(Integer.toString(credito));
     }
     // Resetta il campo di input
     jTextField1.setText("");
@@ -961,6 +1025,8 @@ private void doAdditionalActions() throws FileNotFoundException {
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+    
+    
     public int caricacredito() throws IOException{
         BufferedReader br = null;
         try {
@@ -1058,6 +1124,7 @@ private void doAdditionalActions() throws FileNotFoundException {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

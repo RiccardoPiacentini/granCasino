@@ -321,7 +321,7 @@ public class Signin extends javax.swing.JFrame {
             scanner.close();
             
             // Aggiungi la nuova riga formata dalle due variabili separate da una virgola
-            String newLine = username + "," + Password + System.lineSeparator();
+            String newLine = username + "," + Password +",0"+ System.lineSeparator();
             fileContent.append(newLine);
             
             // Scrivi il nuovo contenuto nel file

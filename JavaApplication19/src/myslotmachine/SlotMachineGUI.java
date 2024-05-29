@@ -731,6 +731,7 @@ public void setBackgroundMusicClip(Clip clip) {
     }//GEN-LAST:event_leverMouseExited
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        pauseBackgroundMusic();
         String linea=nome+","+password+","+slotMachine.getBalance();
         try {
             BufferedWriter bw=new BufferedWriter(new FileWriter("accountTemp.txt"));

@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -42,20 +43,24 @@ public class Ippica extends javax.swing.JFrame {
         impostaquote();
         impostaBottoni();
         impostaNomi();
-        startTimer(); 
         impostaOff();
     }
     
-    public void startThreadsAndAdvanceProgressBars(JProgressBar[] progressBars) {
+     public static void startThreadsAndAdvanceProgressBars(JProgressBar[] progressBars) {
     // Verifica che il numero di progress bar sia esattamente 5
     if (progressBars.length != 5) {
         throw new IllegalArgumentException("Devono esserci esattamente 5 progress bar.");
     }
 
+    Thread[] threads = new Thread[5]; // Array per memorizzare i thread
+    int[] threadCompletionOrder = new int[5]; // Array per memorizzare l'ordine di completamento dei thread
+    AtomicInteger completedThreads = new AtomicInteger(0); // Contatore per i thread completati
+
     for (int i = 0; i < 5; i++) {
         final int index = i; // Variabile finale per l'uso nel thread
 
         Thread thread = new Thread(() -> {
+            System.out.println("Thread " + index + " started.");
             while (progressBars[index].getValue() < 100) {
                 try {
                     // Simula un lavoro con una pausa
@@ -72,12 +77,29 @@ public class Ippica extends javax.swing.JFrame {
                     }
                 });
             }
+            // Memorizza l'ordine di completamento del thread
+            int completedCount = completedThreads.getAndIncrement();
+            threadCompletionOrder[completedCount] = index;
+            // Se i primi tre thread sono completati, visualizza il messaggio del podio
+            if (completedCount == 2) {
+                SwingUtilities.invokeLater(() -> {
+                    String podiumMessage = "Podio:\n";
+                    for (int j = 0; j < 3; j++) {
+                        podiumMessage += "Thread " + threadCompletionOrder[j] + "\n";
+                    }
+                    JOptionPane.showMessageDialog(null, podiumMessage);
+                });
+            }
         });
-
+        
+        // Aggiungi il thread all'array
+        threads[i] = thread;
         // Avvia il thread
         thread.start();
     }
 }
+
+
 
     
     public void impostaOff(){
@@ -418,8 +440,9 @@ public class Ippica extends javax.swing.JFrame {
         jLabel5.setBounds(1010, 60, 80, 20);
 
         jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel20.setText("1");
         jPanel1.add(jLabel20);
-        jLabel20.setBounds(250, 526, 160, 30);
+        jLabel20.setBounds(240, 530, 160, 30);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -544,7 +567,7 @@ public class Ippica extends javax.swing.JFrame {
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel21.setText("IL tuo credito: ");
         jPanel1.add(jLabel21);
-        jLabel21.setBounds(120, 530, 120, 30);
+        jLabel21.setBounds(120, 520, 120, 50);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Group 47.png"))); // NOI18N
         jLabel1.setToolTipText("");

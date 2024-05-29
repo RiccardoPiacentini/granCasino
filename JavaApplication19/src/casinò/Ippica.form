@@ -585,6 +585,8 @@
                 <LineBorder thickness="5"/>
               </Border>
             </Property>
+            <Property name="string" type="java.lang.String" value=""/>
+            <Property name="stringPainted" type="boolean" value="true"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -599,6 +601,8 @@
                 <LineBorder thickness="5"/>
               </Border>
             </Property>
+            <Property name="string" type="java.lang.String" value=""/>
+            <Property name="stringPainted" type="boolean" value="true"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -613,6 +617,8 @@
                 <LineBorder thickness="5"/>
               </Border>
             </Property>
+            <Property name="string" type="java.lang.String" value=""/>
+            <Property name="stringPainted" type="boolean" value="true"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -627,6 +633,8 @@
                 <LineBorder thickness="5"/>
               </Border>
             </Property>
+            <Property name="string" type="java.lang.String" value=""/>
+            <Property name="stringPainted" type="boolean" value="true"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -641,6 +649,8 @@
                 <LineBorder thickness="5"/>
               </Border>
             </Property>
+            <Property name="string" type="java.lang.String" value=""/>
+            <Property name="stringPainted" type="boolean" value="true"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

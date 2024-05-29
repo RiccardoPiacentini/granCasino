@@ -44,22 +44,40 @@ public class Ippica extends javax.swing.JFrame {
         impostaBottoni();
         impostaNomi();
         impostaOff();
+        startTimer();
     }
-    
-     public static void startThreadsAndAdvanceProgressBars(JProgressBar[] progressBars) {
+
+
+public void startThreadsAndAdvanceProgressBars(JProgressBar[] progressBars) {
     // Verifica che il numero di progress bar sia esattamente 5
     if (progressBars.length != 5) {
         throw new IllegalArgumentException("Devono esserci esattamente 5 progress bar.");
     }
 
-    Thread[] threads = new Thread[5]; // Array per memorizzare i thread
+    // Azzera i progress bar
+    for (JProgressBar progressBar : progressBars) {
+        progressBar.setValue(0);
+    }
+
+    // Azzera gli array
     int[] threadCompletionOrder = new int[5]; // Array per memorizzare l'ordine di completamento dei thread
     AtomicInteger completedThreads = new AtomicInteger(0); // Contatore per i thread completati
+
+    Thread[] threads = new Thread[5]; // Array per memorizzare i thread
+
+    Random random = new Random();
 
     for (int i = 0; i < 5; i++) {
         final int index = i; // Variabile finale per l'uso nel thread
 
         Thread thread = new Thread(() -> {
+            // Introduce un ritardo casuale prima dell'avvio del thread
+            try {
+                Thread.sleep(random.nextInt(1000)); // Ritardo casuale fino a 1 secondo
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             System.out.println("Thread " + index + " started.");
             while (progressBars[index].getValue() < 100) {
                 try {
@@ -85,9 +103,16 @@ public class Ippica extends javax.swing.JFrame {
                 SwingUtilities.invokeLater(() -> {
                     String podiumMessage = "Podio:\n";
                     for (int j = 0; j < 3; j++) {
-                        podiumMessage += "Thread " + threadCompletionOrder[j] + "\n";
+                        podiumMessage += progressBars[threadCompletionOrder[j]].getString() + "\n";
                     }
                     JOptionPane.showMessageDialog(null, podiumMessage);
+                    
+                    try {
+                        // Esegui ulteriori azioni dopo la visualizzazione del podio
+                        doAdditionalActions();
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(Ippica.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 });
             }
         });
@@ -98,6 +123,16 @@ public class Ippica extends javax.swing.JFrame {
         thread.start();
     }
 }
+
+// Funzione per eseguire ulteriori azioni dopo la visualizzazione del podio
+private void doAdditionalActions() throws FileNotFoundException {
+   impostaquote();
+        impostaBottoni();
+        impostaNomi();
+        impostaOff();
+        startTimer();
+}
+
 
 
 
@@ -132,10 +167,15 @@ public class Ippica extends javax.swing.JFrame {
         }
         Collections.shuffle(names);
         jLabel12.setText(names.get(0));
+        jProgressBar5.setString(names.get(0));
         jLabel13.setText(names.get(1));
+        jProgressBar1.setString(names.get(1));
         jLabel14.setText(names.get(2));
+        jProgressBar2.setString(names.get(2));
         jLabel15.setText(names.get(3));
+        jProgressBar3.setString(names.get(3));
         jLabel16.setText(names.get(4));
+        jProgressBar4.setString(names.get(4));
         return;
     }
     
@@ -158,6 +198,12 @@ public class Ippica extends javax.swing.JFrame {
 
                 if (remainingSeconds <= 0) {
                     ((Timer) e.getSource()).stop();
+                    try {
+                        // Esegui un'azione dopo che il timer è terminato
+                        timerFinishedAction();
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(Ippica.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         };
@@ -165,6 +211,15 @@ public class Ippica extends javax.swing.JFrame {
         // Crea e avvia il timer
         Timer timer = new Timer(1000, actionListener);
         timer.start();
+    }
+
+    private void timerFinishedAction() throws FileNotFoundException {
+        // Esegui qui l'azione desiderata dopo che il timer è terminato
+        JOptionPane.showMessageDialog(null, "Nuova corsa disponibile!");
+        impostaquote();
+        impostaNomi();
+        // Avvia un nuovo timer
+        startTimer();
     }
     
     public void impostaBottoni(){
@@ -519,22 +574,32 @@ public class Ippica extends javax.swing.JFrame {
         jLabel8.setBounds(800, 80, 130, 90);
 
         jProgressBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        jProgressBar1.setString("");
+        jProgressBar1.setStringPainted(true);
         jPanel1.add(jProgressBar1);
         jProgressBar1.setBounds(50, 130, 700, 90);
 
         jProgressBar2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        jProgressBar2.setString("");
+        jProgressBar2.setStringPainted(true);
         jPanel1.add(jProgressBar2);
         jProgressBar2.setBounds(50, 220, 700, 90);
 
         jProgressBar3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        jProgressBar3.setString("");
+        jProgressBar3.setStringPainted(true);
         jPanel1.add(jProgressBar3);
         jProgressBar3.setBounds(50, 310, 700, 90);
 
         jProgressBar4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        jProgressBar4.setString("");
+        jProgressBar4.setStringPainted(true);
         jPanel1.add(jProgressBar4);
         jProgressBar4.setBounds(50, 400, 700, 90);
 
         jProgressBar5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        jProgressBar5.setString("");
+        jProgressBar5.setStringPainted(true);
         jPanel1.add(jProgressBar5);
         jProgressBar5.setBounds(50, 40, 700, 90);
 
@@ -916,6 +981,13 @@ public class Ippica extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        SwingUtilities.invokeLater(() -> {
+            try {
+                Ippica ippica = new Ippica();
+            } catch (IOException ex) {
+                Logger.getLogger(Ippica.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

@@ -101,7 +101,6 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel1.add(pokerJB);
         pokerJB.setBounds(110, 120, 340, 150);
 
-        WheelJB.setActionCommand("");
         WheelJB.setBorderPainted(false);
         WheelJB.setContentAreaFilled(false);
         WheelJB.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -256,7 +255,6 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     private void B_accountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_accountActionPerformed
-        this.dispose();
         Account account = new Account();
         account.setVisible(true);
     }//GEN-LAST:event_B_accountActionPerformed
@@ -267,11 +265,12 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_BlackJackGameActionPerformed
 
     private void IppicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IppicaActionPerformed
-       try {
-            this.dispose();
-            Ippica ippica = new Ippica();
+        this.dispose();
+        Ippica ippica;
+        try {
+            ippica = new Ippica();
             ippica.setVisible(true);
-        } catch (FileNotFoundException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_IppicaActionPerformed
@@ -287,11 +286,12 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_SlotMachineActionPerformed
 
     private void Ippica2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ippica2ActionPerformed
+        this.dispose();
+        Ippica ippica;
         try {
-            this.dispose();
-            Ippica ippica = new Ippica();
+            ippica = new Ippica();
             ippica.setVisible(true);
-        } catch (FileNotFoundException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_Ippica2ActionPerformed

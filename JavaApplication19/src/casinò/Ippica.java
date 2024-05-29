@@ -7,8 +7,13 @@ package casinò;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import static java.lang.Math.random;
 import static java.lang.StrictMath.random;
 import java.util.ArrayList;
@@ -18,18 +23,22 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import myslotmachine.SlotMachineGUI;
 
 /**
  *
  * @author nicol
  */
 public class Ippica extends javax.swing.JFrame {
-
+    String nome;
+    int credito;
+    String password;
     /**
      * Creates new form Ippica
      */
-    public Ippica() throws FileNotFoundException {
+    public Ippica() throws FileNotFoundException, IOException {
         initComponents();
+        this.credito=caricacredito();
         impostaquote();
         impostaBottoni();
         impostaNomi();
@@ -190,6 +199,7 @@ public class Ippica extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
         P1Cav4 = new javax.swing.JButton();
         P12Cav1 = new javax.swing.JButton();
         P1Cav5 = new javax.swing.JButton();
@@ -209,6 +219,7 @@ public class Ippica extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -236,6 +247,17 @@ public class Ippica extends javax.swing.JFrame {
 
         jPanel1.setPreferredSize(new java.awt.Dimension(1920, 1080));
         jPanel1.setLayout(null);
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Foto/back.png"))); // NOI18N
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2);
+        jButton2.setBounds(0, 510, 60, 80);
 
         P1Cav4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
         P1Cav4.addActionListener(new java.awt.event.ActionListener() {
@@ -373,7 +395,6 @@ public class Ippica extends javax.swing.JFrame {
         P1Cav1.setBounds(930, 80, 80, 80);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("sdfsf");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(810, 526, 90, 30);
 
@@ -394,6 +415,11 @@ public class Ippica extends javax.swing.JFrame {
         jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel1.add(jLabel5);
         jLabel5.setBounds(1010, 60, 80, 20);
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel20.setText("Il tuo credito: ");
+        jPanel1.add(jLabel20);
+        jLabel20.setBounds(250, 526, 160, 30);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -805,6 +831,35 @@ public class Ippica extends javax.swing.JFrame {
         startThreadsAndAdvanceProgressBars(progressBars);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String linea=nome+","+password+","+credito;
+        try {
+            BufferedWriter bw=new BufferedWriter(new FileWriter("accountTemp.txt"));
+            bw.write(linea);
+            bw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Ippica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
+        MainMenu menu=new MainMenu();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+    public int caricacredito() throws IOException{
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader("accountTemp.txt"));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(SlotMachineGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String riga=br.readLine();
+        String[] dividi=riga.split(",");
+        int credito=Integer.parseInt(dividi[2]);
+        nome=dividi[0];
+        password=dividi[1];
+        jLabel20.setText("Il tuo credito: "+credito);
+        return credito;
+    }
     /**
      * @param args the command line arguments
      */
@@ -840,7 +895,7 @@ public class Ippica extends javax.swing.JFrame {
             public void run() {
                 try {
                     new Ippica().setVisible(true);
-                } catch (FileNotFoundException ex) {
+                } catch (IOException ex) {
                     Logger.getLogger(Ippica.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -864,6 +919,7 @@ public class Ippica extends javax.swing.JFrame {
     private javax.swing.JButton P1Cav4;
     private javax.swing.JButton P1Cav5;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -876,6 +932,7 @@ public class Ippica extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

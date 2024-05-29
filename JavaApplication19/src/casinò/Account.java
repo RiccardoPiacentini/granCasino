@@ -21,29 +21,30 @@ public class Account extends javax.swing.JFrame {
         impostaAccount();
     }
 
-    public void impostaAccount(){
-        File file = new File("accountTemp.txt");
-        try (Scanner scanner = new Scanner(file)) {
-            // Legge il file riga per riga
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                // Divide la riga in base alla virgola
-                String[] parts = line.split(",");
-                if (parts.length == 3) {
-                    String username = parts[0];
-                    String credito = parts[2];
-                    // Stampa username e credito
-                    jLabel1.setText(username);
-                    jLabel2.setText(credito);
-                } else {
-                    System.out.println("Formato riga non valido: " + line);
-                }
+    public void impostaAccount() {
+    File file = new File("accountTemp.txt");
+    try (Scanner scanner = new Scanner(file)) {
+        // Legge il file riga per riga
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            // Divide la riga in base alla virgola
+            String[] parts = line.split(",");
+            if (parts.length == 3) {
+                String username = parts[0];
+                String credito = parts[2];
+                // Stampa username e credito
+                jLabel1.setText(username);
+                jLabel2.setText(credito); // Modifica qui per visualizzare il credito correttamente
+            } else {
+                System.out.println("Formato riga non valido: " + line);
             }
-        } catch (FileNotFoundException e) {
-            System.err.println("File non trovato: " + e.getMessage());
         }
-        return;
+    } catch (FileNotFoundException e) {
+        System.err.println("File non trovato: " + e.getMessage());
     }
+    return;
+}
+
     
     /**
      * This method is called from within the constructor to initialize the form.

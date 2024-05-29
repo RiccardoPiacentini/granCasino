@@ -18,9 +18,33 @@ public class Account extends javax.swing.JFrame {
      */
     public Account() {
         initComponents();
-        
+        impostaAccount();
     }
 
+    public void impostaAccount(){
+        File file = new File("accountTemp.txt");
+        try (Scanner scanner = new Scanner(file)) {
+            // Legge il file riga per riga
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                // Divide la riga in base alla virgola
+                String[] parts = line.split(",");
+                if (parts.length == 3) {
+                    String username = parts[0];
+                    String credito = parts[2];
+                    // Stampa username e credito
+                    jLabel1.setText(username);
+                    jLabel2.setText(credito);
+                } else {
+                    System.out.println("Formato riga non valido: " + line);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("File non trovato: " + e.getMessage());
+        }
+        return;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,6 +56,8 @@ public class Account extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         L_user = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -48,7 +74,17 @@ public class Account extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(300, 430, 152, 42);
+        jButton1.setBounds(50, 430, 152, 42);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(50, 170, 80, 20);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(50, 200, 37, 0);
 
         L_user.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         L_user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Group 65.png"))); // NOI18N
@@ -140,6 +176,8 @@ public class Account extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel L_user;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

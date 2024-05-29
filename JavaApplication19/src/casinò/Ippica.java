@@ -241,6 +241,7 @@ public class Ippica extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -417,7 +418,6 @@ public class Ippica extends javax.swing.JFrame {
         jLabel5.setBounds(1010, 60, 80, 20);
 
         jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel20.setText("Il tuo credito: ");
         jPanel1.add(jLabel20);
         jLabel20.setBounds(250, 526, 160, 30);
 
@@ -539,6 +539,12 @@ public class Ippica extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1);
         jButton1.setBounds(505, 530, 90, 23);
+
+        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel21.setText("IL tuo credito: ");
+        jPanel1.add(jLabel21);
+        jLabel21.setBounds(120, 530, 120, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Group 47.png"))); // NOI18N
         jLabel1.setToolTipText("");
@@ -822,13 +828,35 @@ public class Ippica extends javax.swing.JFrame {
     @SuppressWarnings("empty-statement")
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            Thread.sleep(5000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Ippica.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    // Recupera i valori di puntata e credito e rimuovi eventuali spazi
+    String puntataStr = jTextField1.getText().trim();
+    String creditoStr = jLabel20.getText().trim();
+
+    // Debug: Stampa i valori per assicurarsi che siano corretti
+    System.out.println("Puntata inserita: " + puntataStr);
+    System.out.println("Credito disponibile: " + creditoStr);
+
+    // Converti le stringhe in numeri interi
+    int puntata = Integer.parseInt(puntataStr);
+    int credito = Integer.parseInt(creditoStr);
+
+    // Controlla se la puntata è maggiore del credito
+    if (puntata > credito) {
+        JOptionPane.showMessageDialog(null, "Credito insufficiente.", "Errore", JOptionPane.ERROR_MESSAGE);
+    } else {
+        // Procedi con l'azione se la puntata è valida
         impostaOn();
         JProgressBar[] progressBars = {jProgressBar1, jProgressBar2, jProgressBar3, jProgressBar4, jProgressBar5};
         startThreadsAndAdvanceProgressBars(progressBars);
+    }
+    // Resetta il campo di input
+    jTextField1.setText("");
+} catch (NumberFormatException e) {
+    JOptionPane.showMessageDialog(null, "Inserisci un valore numerico valido.", "Errore", JOptionPane.ERROR_MESSAGE);
+    jTextField1.setText(""); // Resetta il campo di input solo in caso di errore di formattazione
+    e.printStackTrace(); // Stampa l'eccezione per il debug
+}
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -854,11 +882,12 @@ public class Ippica extends javax.swing.JFrame {
         }
         String riga=br.readLine();
         String[] dividi=riga.split(",");
-        int credito=Integer.parseInt(dividi[2]);
+        String credito=dividi[2];
         nome=dividi[0];
         password=dividi[1];
-        jLabel20.setText("Il tuo credito: "+credito);
-        return credito;
+        jLabel20.setText(credito);
+        int credito2 = Integer.parseInt(credito);
+        return credito2;
     }
     /**
      * @param args the command line arguments
@@ -933,6 +962,7 @@ public class Ippica extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

@@ -38,7 +38,7 @@ public class SlotMachineGUI extends javax.swing.JFrame {
     private int jackpot;
     
     // Array of file paths for slot icons
-    private static final String[] slotIcons = {"/Foto/cherries.png", "/Foto/seven_1.png", "/Foto/diamond.png", "/Foto/lemon.png", "/Foto/apple.png", "/Foto/watermelon.png"};
+    private static final String[] slotIcons = {"/Foto/cherries.png", "/Foto/seven.png", "/Foto/diamond.png", "/Foto/lemon.png", "/Foto/apple.png", "/Foto/watermelon.png"};
     
     /**
      * Creates new form SlotMachineGUI
@@ -556,19 +556,19 @@ public void setBackgroundMusicClip(Clip clip) {
         chip_50.setBounds(90, 540, 130, 120);
 
         slot2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        slot2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Foto/seven_1.png"))); // NOI18N
+        slot2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Foto/seven.png"))); // NOI18N
         slot2.setPreferredSize(new java.awt.Dimension(40, 40));
         pannel.add(slot2);
         slot2.setBounds(780, 300, 145, 290);
 
         slot0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        slot0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Foto/seven_1.png"))); // NOI18N
+        slot0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Foto/seven.png"))); // NOI18N
         slot0.setPreferredSize(new java.awt.Dimension(40, 40));
         pannel.add(slot0);
         slot0.setBounds(360, 300, 145, 290);
 
         slot1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        slot1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Foto/seven_1.png"))); // NOI18N
+        slot1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Foto/seven.png"))); // NOI18N
         slot1.setPreferredSize(new java.awt.Dimension(40, 40));
         pannel.add(slot1);
         slot1.setBounds(570, 300, 145, 290);

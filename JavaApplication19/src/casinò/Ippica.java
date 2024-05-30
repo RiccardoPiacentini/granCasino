@@ -162,7 +162,7 @@ private void doAdditionalActions() throws FileNotFoundException {
 }
 
 
-public void controllovincita(int primo, int secondo, int terzo) throws FileNotFoundException {
+public void controllovincita(int primo, int secondo, int terzo) {
     String posizione = jLabel22.getText();
     int pos = Integer.parseInt(posizione);
     System.out.println(pos);
@@ -196,35 +196,6 @@ public void controllovincita(int primo, int secondo, int terzo) throws FileNotFo
             Double cre = Double.parseDouble(credito);
             cre += vin;
             jLabel20.setText(String.format("%.2f", cre).replace(".", ","));
-
-            // Aggiorna il credito nel file accountTemp.txt
-            File file = new File("accountTemp.txt");
-            if (file.exists()) {
-                List<String> lines = new ArrayList<>();
-                try (Scanner scanner = new Scanner(file)) {
-                    while (scanner.hasNextLine()) {
-                        String line = scanner.nextLine();
-                        String[] parts = line.split(",");
-                        if (parts.length == 3) {
-                            String username = parts[0];
-                            String password = parts[1];
-                            parts[2] = String.format("%.2f", cre).replace(".", ","); // Aggiorna il credito
-                            lines.add(username + "," + password + "," + parts[2]);
-                        } else {
-                            lines.add(line); // Mantiene la linea originale se non conforme
-                        }
-                    }
-                }
-
-                // Riscrive il file con i valori aggiornati
-                try (PrintWriter writer = new PrintWriter(file)) {
-                    for (String line : lines) {
-                        writer.println(line);
-                    }
-                } catch (FileNotFoundException e) {
-                    System.err.println("Errore nella scrittura del file: " + e.getMessage());
-                }
-            }
         } catch (NumberFormatException e) {
             System.err.println("Errore nel parsing del credito o della vincita: " + e.getMessage());
         }

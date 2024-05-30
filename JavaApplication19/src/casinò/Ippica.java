@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import static java.lang.Math.random;
 import static java.lang.StrictMath.random;
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class Ippica extends javax.swing.JFrame {
     String nome;
     int credito;
     String password;
+    private Timer timer; 
     /**
      * Creates new form Ippica
      */
@@ -53,10 +55,16 @@ public void startThreadsAndAdvanceProgressBars(JProgressBar[] progressBars) {
     if (progressBars.length != 5) {
         throw new IllegalArgumentException("Devono esserci esattamente 5 progress bar.");
     }
-
+    String[] nomi = new String[5];
+    nomi[0]=jLabel12.getText();
+    nomi[1]=jLabel13.getText();
+    nomi[2]=jLabel14.getText();
+    nomi[3]=jLabel15.getText();
+    nomi[4]=jLabel16.getText();
     // Imposta i nomi delle progress bar
     for (int i = 0; i < progressBars.length; i++) {
-        progressBars[i].setName("Cavallo " + (i + 1));
+        progressBars[i].setString(nomi[i]);
+        progressBars[i].setStringPainted(true);
     }
 
     // Azzera i progress bar
@@ -108,38 +116,41 @@ public void startThreadsAndAdvanceProgressBars(JProgressBar[] progressBars) {
                 SwingUtilities.invokeLater(() -> {
                     String podiumMessage = "Podio:\n";
 
-                        int threadNumber = threadCompletionOrder[0] + 1; // Numero del thread
-                        int vincitore = threadNumber; // Vincitore
-                        int secondo = threadNumber + 5; // Secondo
-                        int terzo = threadNumber + 5; // Terzo
-                        
-                        String nomeVincitore = progressBars[threadCompletionOrder[0]].getString(); // Nome del vincitore
-                        String nomeSecondo = progressBars[threadCompletionOrder[1]].getString(); // Nome del secondo
-                        String nomeTerzo = progressBars[threadCompletionOrder[2]].getString(); // Nome del terzo
-                        
-                        // Aggiungi nome del primo, secondo e terzo al messaggio del podio
-                        podiumMessage += "Primo: " + nomeVincitore + "\n";
-                        podiumMessage += "Secondo: " + nomeSecondo + "\n";
-                        podiumMessage += "Terzo: " + nomeTerzo + "\n";
+                    // Recupera i nomi dei cavalli vincitori
+                    String nomeVincitore = progressBars[threadCompletionOrder[0]].getString(); // Nome del vincitore
+                    String nomeSecondo = progressBars[threadCompletionOrder[1]].getString(); // Nome del secondo
+                    String nomeTerzo = progressBars[threadCompletionOrder[2]].getString(); // Nome del terzo
 
-                    JOptionPane.showMessageDialog(null, podiumMessage);
-                    controllovincita(vincitore, secondo, terzo);
-                    try {
+                    // Aggiungi nome del primo, secondo e terzo al messaggio del podio
+                    podiumMessage += "Primo: " + nomeVincitore + "\n";
+                    podiumMessage += "Secondo: " + nomeSecondo + "\n";
+                    podiumMessage += "Terzo: " + nomeTerzo + "\n";
+
+                    // Numeri del cavallo vincitore, secondo e terzo
+                    int vincitore = threadCompletionOrder[0] + 1;
+                    int secondo = threadCompletionOrder[1] + 1;
+                    int terzo = threadCompletionOrder[2] + 1;
+                                        try {
                         // Esegui ulteriori azioni dopo la visualizzazione del podio
                         doAdditionalActions();
                     } catch (FileNotFoundException ex) {
                         Logger.getLogger(Ippica.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    JOptionPane.showMessageDialog(null, podiumMessage);
+                    controllovincita(vincitore, secondo, terzo);
+                    
+
                 });
             }
         });
-        
+
         // Aggiungi il thread all'array
         threads[i] = thread;
         // Avvia il thread
         thread.start();
     }
 }
+
 
 // Funzione per eseguire ulteriori azioni dopo la visualizzazione del podio
 private void doAdditionalActions() throws FileNotFoundException {
@@ -151,50 +162,95 @@ private void doAdditionalActions() throws FileNotFoundException {
 }
 
 
-public void controllovincita(int primo, int secondo, int terzo){
+public void controllovincita(int primo, int secondo, int terzo) throws FileNotFoundException {
     String posizione = jLabel22.getText();
-    int pos = Integer.parseInt(posizione);  
-    if (pos == primo) {
-        String vincita = jLabel2.getText();
-        String credito = jLabel20.getText();
-        Double vin = Double.parseDouble(vincita);
-        Double cre = Double.parseDouble(credito);
-        Double tot = cre+vin;
-        jLabel20.setText(Double.toString(tot));
-    } else if (pos == secondo) {
-        String vincita = jLabel2.getText();
-        String credito = jLabel20.getText();
-        Double vin = Double.parseDouble(vincita);
-        Double cre = Double.parseDouble(credito);
-        Double tot = cre+vin;
-        jLabel20.setText(Double.toString(tot));
-    } else if (pos == terzo) {
-        String vincita = jLabel2.getText();
-        String credito = jLabel20.getText();
-        Double vin = Double.parseDouble(vincita);
-        Double cre = Double.parseDouble(credito);
-        Double tot = cre+vin;
-        jLabel20.setText(Double.toString(tot));
+    int pos = Integer.parseInt(posizione);
+    System.out.println(pos);
+
+    // Determina se l'utente ha vinto in base alla sua posizione e ai risultati della gara
+    boolean isWinner = false;
+    switch (pos) {
+        case 1: case 2: case 3: case 4: case 5:
+            if (pos == primo) {
+                isWinner = true;
+            }
+            break;
+        case 6: case 7: case 8: case 9: case 10:
+            if (pos - 5 == primo || pos - 5 == secondo) {
+                isWinner = true;
+            }
+            break;
+        case 11: case 12: case 13: case 14: case 15:
+            if (pos - 10 == primo || pos - 10 == secondo || pos - 10 == terzo) {
+                isWinner = true;
+            }
+            break;
     }
-    return;
+
+    // Aggiorna il credito se l'utente ha vinto
+    if (isWinner) {
+        String vincita = jLabel2.getText().replace(",", ".");
+        String credito = jLabel20.getText().replace(",", ".");
+        try {
+            Double vin = Double.parseDouble(vincita);
+            Double cre = Double.parseDouble(credito);
+            cre += vin;
+            jLabel20.setText(String.format("%.2f", cre).replace(".", ","));
+
+            // Aggiorna il credito nel file accountTemp.txt
+            File file = new File("accountTemp.txt");
+            if (file.exists()) {
+                List<String> lines = new ArrayList<>();
+                try (Scanner scanner = new Scanner(file)) {
+                    while (scanner.hasNextLine()) {
+                        String line = scanner.nextLine();
+                        String[] parts = line.split(",");
+                        if (parts.length == 3) {
+                            String username = parts[0];
+                            String password = parts[1];
+                            parts[2] = String.format("%.2f", cre).replace(".", ","); // Aggiorna il credito
+                            lines.add(username + "," + password + "," + parts[2]);
+                        } else {
+                            lines.add(line); // Mantiene la linea originale se non conforme
+                        }
+                    }
+                }
+
+                // Riscrive il file con i valori aggiornati
+                try (PrintWriter writer = new PrintWriter(file)) {
+                    for (String line : lines) {
+                        writer.println(line);
+                    }
+                } catch (FileNotFoundException e) {
+                    System.err.println("Errore nella scrittura del file: " + e.getMessage());
+                }
+            }
+        } catch (NumberFormatException e) {
+            System.err.println("Errore nel parsing del credito o della vincita: " + e.getMessage());
+        }
+    }
 }
+
+
+
+
 
     
     public void impostaOff(){
-        jProgressBar1.setVisible(false);
         jProgressBar2.setVisible(false);
         jProgressBar3.setVisible(false);
         jProgressBar4.setVisible(false);
         jProgressBar5.setVisible(false);
+        jProgressBar1.setVisible(false);
         return;
     }
     
     public void impostaOn(){
-        jProgressBar1.setVisible(true);
         jProgressBar2.setVisible(true);
         jProgressBar3.setVisible(true);
         jProgressBar4.setVisible(true);
         jProgressBar5.setVisible(true);
+        jProgressBar1.setVisible(true);
         return;
     }
     
@@ -210,51 +266,58 @@ public void controllovincita(int primo, int secondo, int terzo){
         }
         Collections.shuffle(names);
         jLabel12.setText(names.get(0));
-        jProgressBar5.setString(names.get(0));
+        jProgressBar1.setString(names.get(0));
         jLabel13.setText(names.get(1));
-        jProgressBar1.setString(names.get(1));
+        jProgressBar2.setString(names.get(1));
         jLabel14.setText(names.get(2));
-        jProgressBar2.setString(names.get(2));
+        jProgressBar3.setString(names.get(2));
         jLabel15.setText(names.get(3));
-        jProgressBar3.setString(names.get(3));
+        jProgressBar4.setString(names.get(3));
         jLabel16.setText(names.get(4));
-        jProgressBar4.setString(names.get(4));
+        jProgressBar5.setString(names.get(4));
         return;
     }
     
     private void startTimer() {
-        // Crea un ActionListener per il timer
-        ActionListener actionListener = new ActionListener() {
-            private int remainingSeconds = 2 * 60; // 5 minuti in secondi
+    // Se esiste un timer precedente, fermalo
+    if (timer != null) {
+        timer.stop();
+    }
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                remainingSeconds--;
+    // Crea un ActionListener per il timer
+    ActionListener actionListener = new ActionListener() {
+        private int remainingSeconds = 2 * 60; // 2 minuti in secondi
 
-                int minutes = remainingSeconds / 60;
-                int seconds = remainingSeconds % 60;
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            remainingSeconds--;
 
-                // Aggiorna jLabel3 usando SwingUtilities.invokeLater
-                SwingUtilities.invokeLater(() -> {
-                    jLabel3.setText(String.format("%d:%02d", minutes, seconds));
-                });
+            int minutes = remainingSeconds / 60;
+            int seconds = remainingSeconds % 60;
 
-                if (remainingSeconds <= 0) {
-                    ((Timer) e.getSource()).stop();
-                    try {
-                        // Esegui un'azione dopo che il timer è terminato
-                        timerFinishedAction();
-                    } catch (FileNotFoundException ex) {
-                        Logger.getLogger(Ippica.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+            // Aggiorna jLabel3 usando SwingUtilities.invokeLater
+            SwingUtilities.invokeLater(() -> {
+                jLabel3.setText(String.format("%d:%02d", minutes, seconds));
+            });
+
+            if (remainingSeconds <= 0) {
+                // Ferma il timer corrente
+                ((Timer) e.getSource()).stop();
+
+                try {
+                    // Esegui le azioni necessarie al termine del timer
+                    timerFinishedAction();
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Ippica.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        };
+        }
+    };
 
-        // Crea e avvia il timer
-        Timer timer = new Timer(1000, actionListener);
-        timer.start();
-    }
+    // Crea e avvia il nuovo timer
+    timer = new Timer(1000, actionListener);
+    timer.start();
+}
 
     private void timerFinishedAction() throws FileNotFoundException {
         // Esegui qui l'azione desiderata dopo che il timer è terminato
@@ -352,11 +415,11 @@ public void controllovincita(int primo, int secondo, int terzo){
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jProgressBar1 = new javax.swing.JProgressBar();
         jProgressBar2 = new javax.swing.JProgressBar();
         jProgressBar3 = new javax.swing.JProgressBar();
         jProgressBar4 = new javax.swing.JProgressBar();
         jProgressBar5 = new javax.swing.JProgressBar();
+        jProgressBar1 = new javax.swing.JProgressBar();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -617,35 +680,35 @@ public void controllovincita(int primo, int secondo, int terzo){
         jPanel1.add(jLabel8);
         jLabel8.setBounds(800, 80, 130, 90);
 
-        jProgressBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        jProgressBar1.setString("");
-        jProgressBar1.setStringPainted(true);
-        jPanel1.add(jProgressBar1);
-        jProgressBar1.setBounds(50, 130, 700, 90);
-
         jProgressBar2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         jProgressBar2.setString("");
         jProgressBar2.setStringPainted(true);
         jPanel1.add(jProgressBar2);
-        jProgressBar2.setBounds(50, 220, 700, 90);
+        jProgressBar2.setBounds(50, 130, 700, 90);
 
         jProgressBar3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         jProgressBar3.setString("");
         jProgressBar3.setStringPainted(true);
         jPanel1.add(jProgressBar3);
-        jProgressBar3.setBounds(50, 310, 700, 90);
+        jProgressBar3.setBounds(50, 220, 700, 90);
 
         jProgressBar4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         jProgressBar4.setString("");
         jProgressBar4.setStringPainted(true);
         jPanel1.add(jProgressBar4);
-        jProgressBar4.setBounds(50, 400, 700, 90);
+        jProgressBar4.setBounds(50, 310, 700, 90);
 
         jProgressBar5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         jProgressBar5.setString("");
         jProgressBar5.setStringPainted(true);
         jPanel1.add(jProgressBar5);
-        jProgressBar5.setBounds(50, 40, 700, 90);
+        jProgressBar5.setBounds(50, 400, 700, 90);
+
+        jProgressBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        jProgressBar1.setString("");
+        jProgressBar1.setStringPainted(true);
+        jPanel1.add(jProgressBar1);
+        jProgressBar1.setBounds(50, 40, 700, 90);
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);

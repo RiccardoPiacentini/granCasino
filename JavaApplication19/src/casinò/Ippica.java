@@ -36,6 +36,7 @@ public class Ippica extends javax.swing.JFrame {
     int credito;
     String password;
     private Timer timer; 
+    double cre;
     /**
      * Creates new form Ippica
      */
@@ -193,7 +194,7 @@ public void controllovincita(int primo, int secondo, int terzo) {
         String credito = jLabel20.getText().replace(",", ".");
         try {
             Double vin = Double.parseDouble(vincita);
-            Double cre = Double.parseDouble(credito);
+            cre = Double.parseDouble(credito);
             cre += vin;
             jLabel20.setText(String.format("%.2f", cre).replace(".", ","));
         } catch (NumberFormatException e) {
@@ -1046,7 +1047,8 @@ public void controllovincita(int primo, int secondo, int terzo) {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String linea=nome+","+password+","+credito;
+        int cred=(int)cre;
+        String linea=nome+","+password+","+cred;
         try {
             BufferedWriter bw=new BufferedWriter(new FileWriter("accountTemp.txt"));
             bw.write(linea);
